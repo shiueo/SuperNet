@@ -1,46 +1,66 @@
 package com.shiueo.supernet
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.shiueo.supernet.ui.theme.SuperNetTheme
 
-class MainActivity : ComponentActivity() {
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.widget.ImageView
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var google_sign_in_btn: ImageView
+    private lateinit var GoogleSignResultLauncher: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            SuperNetTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+        setContentView(R.layout.activity_main)
+
+        google_sign_in_btn = findViewById(R.id.google_sign_in_btn)
+
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestEmail()
+            .build()
+
+        GoogleSignResultLauncher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()){ result ->
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            handleSignInResult(task)
+        }
+
+        google_sign_in_btn.setOnClickListener {
+            val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+            var signIntent: Intent = mGoogleSignInClient.getSignInIntent()
+            GoogleSignResultLauncher.launch(signIntent)
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val email = account?.email.toString()
+            var googletoken = account?.idToken.toString()
+            var googletokenAuth = account?.serverAuthCode.toString()
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    SuperNetTheme {
-        Greeting("Android")
+            Log.e("Google account",email)
+            Log.e("Google account",googletoken)
+            Log.e("Google account", googletokenAuth)
+
+            val intent = Intent(this, supernet_scene::class.java)
+            intent.putExtra("email", email)
+            startActivity(intent)
+
+        } catch (e: ApiException){
+            Log.e("Google account","signInResult:failed Code = " + e.statusCode)
+        }
     }
+
+
 }
