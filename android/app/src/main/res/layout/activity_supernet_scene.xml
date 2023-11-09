@@ -86,7 +86,7 @@
             android:layout_marginRight="30dp"
             android:layout_weight="1"
             android:backgroundTint="#FFFFFF"
-            android:text="Pika-chu"
+            android:text="Goku"
             android:textColor="#000000" />
     </LinearLayout>
 
