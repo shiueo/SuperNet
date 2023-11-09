@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SuperNet"
         tools:targetApi="31">
         <activity
+            android:name=".VideoSene"
+            android:exported="false" />
+        <activity
             android:name=".supernet_scene"
             android:exported="false" />
         <activity
