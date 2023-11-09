@@ -46,12 +46,8 @@ class MainActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             val email = account?.email.toString()
-            var googletoken = account?.idToken.toString()
-            var googletokenAuth = account?.serverAuthCode.toString()
 
             Log.e("Google account",email)
-            Log.e("Google account",googletoken)
-            Log.e("Google account", googletokenAuth)
 
             val intent = Intent(this, supernet_scene::class.java)
             intent.putExtra("email", email)
