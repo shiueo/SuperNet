@@ -2,7 +2,6 @@ package com.shiueo.supernet
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.widget.TextView
 
 class supernet_scene : AppCompatActivity() {
@@ -15,7 +14,6 @@ class supernet_scene : AppCompatActivity() {
         acc_text = findViewById(R.id.acctext)
 
         acc_text.text = "You're logged in as " + EMAIL
-
 
     }
 }
