@@ -27,7 +27,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_marginBottom="60dp"
-        android:text="SuperNet is a revolutionary application designed specifically for the pilot test of the SuperNet project constructed by ALP."
+        android:text="SuperNet is a revolutionary application designed specifically for the pilot test of the SuperNet project constructed by ALP. It enables incredibly fast file transfers without the need for direct internet connectivity.\n\n Repository: https://github.com/shiueo/SuperNet"
         android:textAlignment="center"
         android:textColor="#DDDDDD"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,12 +6,12 @@
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\shissdo-zephyrus\.android\avd\Pixel_XL_API_34.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="RFCW313ZBFE" />
           </Key>
         </deviceKey>
       </Target>
     </runningDeviceTargetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-11-09T09:29:21.330652100Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-11-09T09:57:06.990723900Z" />
   </component>
 </project>
