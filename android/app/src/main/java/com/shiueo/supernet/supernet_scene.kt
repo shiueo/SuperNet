@@ -25,6 +25,7 @@ class supernet_scene : AppCompatActivity() {
         pikachu_btn.setOnClickListener {
             val intent = Intent(this, VideoSene::class.java)
             intent.putExtra("url", "https://youtube.com")
+            intent.putExtra("email", EMAIL)
             startActivity(intent)
         }
 
